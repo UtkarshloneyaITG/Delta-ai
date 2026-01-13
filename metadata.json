@@ -1,0 +1,8 @@
+{
+  "name": "Delta AI Workspace",
+  "description": "An enterprise-grade AI productivity platform featuring streaming responses, persistent session history, role-based personas, and advanced document/code generation capabilities powered by Gemini.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
