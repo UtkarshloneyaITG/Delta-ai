@@ -234,7 +234,10 @@ const App: React.FC = () => {
         <div className="flex items-center justify-between p-4 border-b border-inherit">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
-              <Plus size={20} />
+              {/* <Plus size={20} /> */}
+
+
+              <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" id="delta" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path id="primary" d="M19,21,11.5,4.13M20,21,12,3,4,21Z" style={{ fill: "none", stroke: "rgb(0, 0, 0)", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2 }}></path></svg>
             </div>
             <span className="font-bold text-lg tracking-tight">Delta AI</span>
           </div>
@@ -300,12 +303,12 @@ const App: React.FC = () => {
             <span>Sign Out</span>
           </button>
         </div>
-      </aside>
+      </aside >
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col min-w-0 relative">
+      < main className="flex-1 flex flex-col min-w-0 relative" >
         {/* Header */}
-        <header className={`h-16 flex items-center justify-between px-6 border-b transition-colors backdrop-blur-md sticky top-0 z-10 ${settings.theme === 'dark' ? 'border-slate-800 bg-slate-900/80' : 'border-slate-200 bg-white/80'}`}>
+        < header className={`h-16 flex items-center justify-between px-6 border-b transition-colors backdrop-blur-md sticky top-0 z-10 ${settings.theme === 'dark' ? 'border-slate-800 bg-slate-900/80' : 'border-slate-200 bg-white/80'}`}>
           <div className="flex items-center gap-4">
             {!isSidebarOpen && (
               <button onClick={() => setIsSidebarOpen(true)} className="p-2 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg transition-colors">
@@ -341,84 +344,86 @@ const App: React.FC = () => {
               {settings.theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
           </div>
-        </header>
+        </header >
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-8 scroll-smooth">
-          {activeSession?.messages.length === 0 ? (
-            <div className="max-w-2xl mx-auto py-12 space-y-12">
-              <div className="text-center space-y-4">
-                <div className="inline-flex p-4 bg-indigo-100 dark:bg-indigo-900/30 rounded-3xl text-indigo-600 dark:text-indigo-400 mb-2">
-                  <Plus size={40} />
+        < div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-8 scroll-smooth" >
+          {
+            activeSession?.messages.length === 0 ? (
+              <div className="max-w-2xl mx-auto py-12 space-y-12">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex p-4 bg-indigo-100 dark:bg-indigo-900/30 rounded-3xl text-indigo-600 dark:text-indigo-400 mb-2">
+                    <Plus size={40} />
+                  </div>
+                  <h2 className="text-3xl font-bold">What can I help you build today?</h2>
+                  <p className="text-slate-500 dark:text-slate-400 max-w-lg mx-auto">
+                    Delta AI can help you write code, design interfaces, draft professional documents, and more. Select a mode to get started.
+                  </p>
                 </div>
-                <h2 className="text-3xl font-bold">What can I help you build today?</h2>
-                <p className="text-slate-500 dark:text-slate-400 max-w-lg mx-auto">
-                  Delta AI can help you write code, design interfaces, draft professional documents, and more. Select a mode to get started.
-                </p>
-              </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                {SUGGESTIONS.map((s, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => {
-                      setInputValue(s);
-                      handleSendMessage(s);
-                    }}
-                    className={`text-left p-4 rounded-2xl border transition-all hover:shadow-md group ${settings.theme === 'dark' ? 'border-slate-800 bg-slate-800/50 hover:bg-slate-800' : 'border-slate-200 bg-white hover:bg-slate-50'}`}
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600">
-                        <MessageSquare size={16} />
+                <div className="grid md:grid-cols-2 gap-4">
+                  {SUGGESTIONS.map((s, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        setInputValue(s);
+                        handleSendMessage(s);
+                      }}
+                      className={`text-left p-4 rounded-2xl border transition-all hover:shadow-md group ${settings.theme === 'dark' ? 'border-slate-800 bg-slate-800/50 hover:bg-slate-800' : 'border-slate-200 bg-white hover:bg-slate-50'}`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600">
+                          <MessageSquare size={16} />
+                        </div>
+                        <ChevronRight size={16} className="text-slate-400 group-hover:translate-x-1 transition-transform" />
                       </div>
-                      <ChevronRight size={16} className="text-slate-400 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                    <p className="text-sm font-medium leading-relaxed">{s}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="max-w-4xl mx-auto space-y-8 pb-32">
-              {activeSession?.messages.map((msg, idx) => (
-                <div key={msg.id} className={`flex gap-4 group animate-in slide-in-from-bottom-2 duration-300`}>
-                  <div className={`w-8 h-8 rounded-lg shrink-0 flex items-center justify-center font-bold text-xs ${msg.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-emerald-500 text-white'}`}>
-                    {msg.role === 'user' ? 'U' : 'N'}
-                  </div>
-                  <div className="flex-1 min-w-0 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                        {msg.role === 'user' ? 'You' : 'Delta AI'}
-                      </span>
-                      {msg.role === 'assistant' && (
-                        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <button className="p-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded text-slate-400"><Copy size={14} /></button>
-                          <button className="p-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded text-slate-400"><ThumbsUp size={14} /></button>
-                          <button className="p-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded text-slate-400"><ThumbsDown size={14} /></button>
-                        </div>
-                      )}
-                    </div>
-                    <div className={`text-sm leading-relaxed whitespace-pre-wrap font-normal ${msg.role === 'assistant' && msg.content === '' ? 'animate-pulse' : ''}`}>
-                      {msg.content === '' ? (
-                        <div className="flex gap-1 py-2">
-                          <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 animate-bounce"></div>
-                          <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 animate-bounce [animation-delay:-0.15s]"></div>
-                          <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 animate-bounce [animation-delay:-0.3s]"></div>
-                        </div>
-                      ) : (
-                        msg.content
-                      )}
-                    </div>
-                  </div>
+                      <p className="text-sm font-medium leading-relaxed">{s}</p>
+                    </button>
+                  ))}
                 </div>
-              ))}
-              <div ref={messagesEndRef} />
-            </div>
-          )}
-        </div>
+              </div>
+            ) : (
+              <div className="max-w-4xl mx-auto space-y-8 pb-32">
+                {activeSession?.messages.map((msg, idx) => (
+                  <div key={msg.id} className={`flex gap-4 group animate-in slide-in-from-bottom-2 duration-300`}>
+                    <div className={`w-8 h-8 rounded-lg shrink-0 flex items-center justify-center font-bold text-xs ${msg.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-emerald-500 text-white'}`}>
+                      {msg.role === 'user' ? 'U' : 'N'}
+                    </div>
+                    <div className="flex-1 min-w-0 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                          {msg.role === 'user' ? 'You' : 'Delta AI'}
+                        </span>
+                        {msg.role === 'assistant' && (
+                          <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button className="p-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded text-slate-400"><Copy size={14} /></button>
+                            <button className="p-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded text-slate-400"><ThumbsUp size={14} /></button>
+                            <button className="p-1 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded text-slate-400"><ThumbsDown size={14} /></button>
+                          </div>
+                        )}
+                      </div>
+                      <div className={`text-sm leading-relaxed whitespace-pre-wrap font-normal ${msg.role === 'assistant' && msg.content === '' ? 'animate-pulse' : ''}`}>
+                        {msg.content === '' ? (
+                          <div className="flex gap-1 py-2">
+                            <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 animate-bounce"></div>
+                            <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 animate-bounce [animation-delay:-0.15s]"></div>
+                            <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 animate-bounce [animation-delay:-0.3s]"></div>
+                          </div>
+                        ) : (
+                          msg.content
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <div ref={messagesEndRef} />
+              </div>
+            )
+          }
+        </div >
 
         {/* Input Area */}
-        <div className={`absolute bottom-0 left-0 right-0 p-4 md:p-8 bg-gradient-to-t from-slate-50 dark:from-slate-900 via-slate-50/80 dark:via-slate-900/80 to-transparent pointer-events-none`}>
+        < div className={`absolute bottom-0 left-0 right-0 p-4 md:p-8 bg-gradient-to-t from-slate-50 dark:from-slate-900 via-slate-50/80 dark:via-slate-900/80 to-transparent pointer-events-none`}>
           <div className="max-w-4xl mx-auto relative pointer-events-auto">
             {/* Persona Selector Pill */}
             <div className="flex justify-center mb-3">
@@ -473,65 +478,67 @@ const App: React.FC = () => {
               Delta AI can make mistakes. Consider checking important information.
             </p>
           </div>
-        </div>
-      </main>
+        </div >
+      </main >
 
       {/* Settings Modal */}
-      {isSettingsOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className={`w-full max-w-md rounded-2xl shadow-2xl border animate-in zoom-in-95 duration-200 ${settings.theme === 'dark' ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'}`}>
-            <div className="flex items-center justify-between p-6 border-b border-inherit">
-              <h2 className="text-xl font-bold">Settings</h2>
-              <button onClick={() => setIsSettingsOpen(false)} className="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg"><X size={20} /></button>
-            </div>
+      {
+        isSettingsOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm animate-in fade-in duration-200">
+            <div className={`w-full max-w-md rounded-2xl shadow-2xl border animate-in zoom-in-95 duration-200 ${settings.theme === 'dark' ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'}`}>
+              <div className="flex items-center justify-between p-6 border-b border-inherit">
+                <h2 className="text-xl font-bold">Settings</h2>
+                <button onClick={() => setIsSettingsOpen(false)} className="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg"><X size={20} /></button>
+              </div>
 
-            <div className="p-6 space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">AI Model</label>
+              <div className="p-6 space-y-6">
                 <div className="space-y-2">
-                  {MODELS.map(m => (
-                    <button
-                      key={m.id}
-                      onClick={() => setSettings(s => ({ ...s, model: m.id }))}
-                      className={`w-full flex flex-col text-left p-3 rounded-xl border transition-all ${settings.model === m.id ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-900/20' : 'border-slate-200 dark:border-slate-800'}`}
-                    >
-                      <span className="font-bold text-sm">{m.name}</span>
-                      <span className="text-xs text-slate-500">{m.description}</span>
-                    </button>
-                  ))}
+                  <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">AI Model</label>
+                  <div className="space-y-2">
+                    {MODELS.map(m => (
+                      <button
+                        key={m.id}
+                        onClick={() => setSettings(s => ({ ...s, model: m.id }))}
+                        className={`w-full flex flex-col text-left p-3 rounded-xl border transition-all ${settings.model === m.id ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-900/20' : 'border-slate-200 dark:border-slate-800'}`}
+                      >
+                        <span className="font-bold text-sm">{m.name}</span>
+                        <span className="text-xs text-slate-500">{m.description}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Creativity (Temperature)</label>
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.1"
-                  value={settings.temperature}
-                  onChange={(e) => setSettings(s => ({ ...s, temperature: parseFloat(e.target.value) }))}
-                  className="w-full accent-indigo-600"
-                />
-                <div className="flex justify-between text-xs font-bold text-slate-400">
-                  <span>Precise</span>
-                  <span>Creative</span>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Creativity (Temperature)</label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value={settings.temperature}
+                    onChange={(e) => setSettings(s => ({ ...s, temperature: parseFloat(e.target.value) }))}
+                    className="w-full accent-indigo-600"
+                  />
+                  <div className="flex justify-between text-xs font-bold text-slate-400">
+                    <span>Precise</span>
+                    <span>Creative</span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="pt-4 border-t border-inherit flex gap-3">
-                <button
-                  onClick={() => setIsSettingsOpen(false)}
-                  className="flex-1 py-2 rounded-xl bg-indigo-600 text-white font-bold text-sm shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 active:scale-95 transition-all"
-                >
-                  Save Changes
-                </button>
+                <div className="pt-4 border-t border-inherit flex gap-3">
+                  <button
+                    onClick={() => setIsSettingsOpen(false)}
+                    className="flex-1 py-2 rounded-xl bg-indigo-600 text-white font-bold text-sm shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 active:scale-95 transition-all"
+                  >
+                    Save Changes
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )
+      }
+    </div >
   );
 };
 
