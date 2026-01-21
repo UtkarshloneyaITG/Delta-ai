@@ -235,8 +235,6 @@ const App: React.FC = () => {
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
               {/* <Plus size={20} /> */}
-
-
               <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" id="delta" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path id="primary" d="M19,21,11.5,4.13M20,21,12,3,4,21Z" style={{ fill: "none", stroke: "rgb(0, 0, 0)", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2 }}></path></svg>
             </div>
             <span className="font-bold text-lg tracking-tight">Delta AI</span>
@@ -353,7 +351,8 @@ const App: React.FC = () => {
               <div className="max-w-2xl mx-auto py-12 space-y-12">
                 <div className="text-center space-y-4">
                   <div className="inline-flex p-4 bg-indigo-100 dark:bg-indigo-900/30 rounded-3xl text-indigo-600 dark:text-indigo-400 mb-2">
-                    <Plus size={40} />
+                    <svg fill="#000000" width="40px" height="40px" viewBox="0 0 24 24" id="delta" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path id="primary" d="M19,21,11.5,4.13M20,21,12,3,4,21Z" style={{ fill: "none", stroke: "rgb(0, 0, 0)", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2 }}></path></svg>
+
                   </div>
                   <h2 className="text-3xl font-bold">What can I help you build today?</h2>
                   <p className="text-slate-500 dark:text-slate-400 max-w-lg mx-auto">
