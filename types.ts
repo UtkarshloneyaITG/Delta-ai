@@ -12,7 +12,8 @@ export enum AIRole {
   DESIGNER = 'UI/UX Designer',
   MANAGER = 'Product Manager',
   ANALYST = 'Data Analyst',
-  SAVAGE = "Savage man"
+  SAVAGE = "Savage man",
+  SHOPIFY = "Shopify Expert"
 }
 
 export interface Message {

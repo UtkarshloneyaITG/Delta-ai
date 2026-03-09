@@ -3,6 +3,7 @@ import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { AIMode, AIRole, Message } from "../types";
 import { SYSTEM_PROMPTS, MODE_INSTRUCTIONS } from "../constants";
 
+
 export class GeminiService {
   private ai: GoogleGenAI;
 
